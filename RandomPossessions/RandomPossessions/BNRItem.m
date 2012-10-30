@@ -9,6 +9,13 @@
 #import "BNRItem.h"
 
 @implementation BNRItem
+@synthesize itemName, containedItem, container, serialNumber, valueInDollars,
+    dateCreated;
+
+- (void)setContainedItem:(BNRItem *)i {
+    containedItem = i;
+    [i setContainer:self];
+}
 
 - (id)init {
     return [self initWithItemName:@"Item"
@@ -29,31 +36,6 @@
     }
     
     return self;
-}
-
-- (void)setItemName:(NSString *)str {
-    itemName = str;
-}
-- (NSString *)itemName {
-    return itemName;
-}
-
-- (void)setSerialNumber:(NSString *)str {
-    serialNumber = str;
-}
-- (NSString *)serialNumber {
-    return serialNumber;
-}
-
-- (void)setValueInDollars:(int)value {
-    valueInDollars = value;
-}
-- (int)valueInDollars {
-    return valueInDollars;
-}
-
-- (NSDate *)dateCreated {
-    return dateCreated;
 }
 
 - (NSString *)description {
@@ -97,4 +79,7 @@
     return newItem;
 }
 
+- (void)dealloc {
+    NSLog(@"Destroyed: %@", self);
+}
 @end

@@ -8,27 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNRItem : NSObject {
-    NSString *itemName;
-    NSString *serialNumber;
-    int valueInDollars;
-    NSDate *dateCreated;
-}
+@interface BNRItem : NSObject
 
 - (id)initWithItemName:(NSString *)name
         valueInDollars:(int)value
           serialNumber:(NSString *)sNumber;
 
-- (void)setItemName:(NSString *)str;
-- (NSString *)itemName;
-
-- (void)setSerialNumber:(NSString *)str;
-- (NSString *)serialNumber;
-
-- (void)setValueInDollars:(int)value;
-- (int)valueInDollars;
-
-- (NSDate *)dateCreated;
+@property (nonatomic, strong) BNRItem *containedItem;
+@property (nonatomic, weak) BNRItem *container;
+@property (nonatomic, copy) NSString *itemName;
+@property (nonatomic, copy) NSString *serialNumber;
+@property (nonatomic) int valueInDollars;
+@property (nonatomic, strong, readonly) NSDate *dateCreated;
 
 + (id)randomItem;
 
