@@ -1,0 +1,15 @@
+//
+//  RotationAppDelegate.h
+//  HeavyRotation
+//
+//  Created by Vinay Siddharam Hiremath on 12/25/12.
+//  Copyright (c) 2012 Vinay Siddharam Hiremath. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface RotationAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+
+@end
