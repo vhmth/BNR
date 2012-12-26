@@ -28,6 +28,7 @@
     
     if (self) {
         allItems = [[NSMutableArray alloc] init];
+        [self createLastItem];
     }
     
     return self;
@@ -39,8 +40,31 @@
 
 - (BNRItem *)createItem {
     BNRItem *item = [BNRItem randomItem];
-    [allItems addObject:item];
+    int loc = [allItems count] - 1;
+    [allItems insertObject:item
+                   atIndex:loc];
     return item;
+}
+
+- (NSString *)createLastItem {
+    NSString *obj = @"No more items!";
+    [allItems addObject:@"No more items!"];
+    return obj;
+}
+
+- (void)removeItem:(BNRItem *)p {
+    [allItems removeObjectIdenticalTo:p];
+}
+
+- (void)moveItemAtIndex:(int)from
+                toIndex:(int)to {
+    if (from == to) {
+        return;
+    }
+    
+    BNRItem *p = [allItems objectAtIndex:from];
+    [allItems removeObjectAtIndex:from];
+    [allItems insertObject:p atIndex:to];
 }
 
 @end

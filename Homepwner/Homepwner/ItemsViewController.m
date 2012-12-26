@@ -15,9 +15,6 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        for (int i = 0; i < 5; i++) {
-            [[BNRItemStore sharedStore] createItem];
-        }
     }
     return self;
 }
@@ -28,7 +25,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
         numberOfRowsInSection:(NSInteger)section {
-    return [[[BNRItemStore sharedStore] allItems] count] + 1;
+    return [[[BNRItemStore sharedStore] allItems] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -52,7 +49,7 @@
         [[[cell textLabel] font] fontWithSize:20.0];
     } else {
         // silver challenge: the last row will always display "No more items!"
-        [[cell textLabel] setText:@"No more items!"];
+        [[cell textLabel] setText:@"No more rows!"];
     }
     
     return cell;
@@ -68,6 +65,95 @@
         return 60.0;
     } else {
         return 44.0;
+    }
+}
+
+- (UIView *)headerView {
+    if (!headerView) {
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
+                                      owner:self
+                                    options:nil];
+    }
+    return headerView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+        viewForHeaderInSection:(NSInteger)section {
+    return [self headerView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView
+        heightForHeaderInSection:(NSInteger)section {
+    return [[self headerView] bounds].size.height;
+}
+
+- (IBAction)toggleEditingMode:(id)sender {
+    if ([self isEditing]) {
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        [self setEditing:NO animated:YES];
+    } else {
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        [self setEditing:YES animated:YES];
+    }
+}
+
+- (IBAction)addNewItem:(id)sender {
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    int lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow
+                                         inSection:0];
+    
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
+                            withRowAnimation:UITableViewRowAnimationTop];
+}
+
+- (void)tableView:(UITableView *)tableView
+        commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+        forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        BNRItemStore *ps = [BNRItemStore sharedStore];
+        NSArray *items = [ps allItems];
+        if ([indexPath row] != ([items count] - 1)) {
+            BNRItem *p = [items objectAtIndex:[indexPath row]];
+            [ps removeItem:p];
+        
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView
+        moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+        toIndexPath:(NSIndexPath *)destinationIndexPath {
+    [[BNRItemStore sharedStore] moveItemAtIndex:[sourceIndexPath row]
+                                        toIndex:[destinationIndexPath row]];
+}
+
+// bronze challenge: renaming the delete button
+- (NSString *)tableView:(UITableView *)tableView
+        titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Remove";
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+        canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath row] == ([[[BNRItemStore sharedStore] allItems] count] - 1)) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+// gold challenge: make sure no table row can take the final row place
+- (NSIndexPath *)tableView:(UITableView *)tableView
+        targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+        toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    int itemCount = [[[BNRItemStore sharedStore] allItems] count];
+    if ([proposedDestinationIndexPath row] == (itemCount - 1)) {
+        return [NSIndexPath indexPathForRow:itemCount - 2 inSection:0];
+    } else {
+        return proposedDestinationIndexPath;
     }
 }
 
