@@ -19,7 +19,12 @@
 		598B822D168AAB8300C44E51 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598B822C168AAB8300C44E51 /* ItemsViewController.m */; };
 		598B8230168AAD0900C44E51 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 598B822F168AACF600C44E51 /* BNRItem.m */; };
 		598B8233168AAD9C00C44E51 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 598B8232168AAD9C00C44E51 /* BNRItemStore.m */; };
-		598B8239168AE27C00C44E51 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 598B8238168AE27C00C44E51 /* HeaderView.xib */; };
+		59AB5B2E168D673C0039106A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59AB5B2C168D673C0039106A /* DetailViewController.m */; };
+		59AB5B2F168D673C0039106A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59AB5B2D168D673C0039106A /* DetailViewController.xib */; };
+		59AB5B32168D74C30039106A /* tableViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 59AB5B31168D74C30039106A /* tableViewBackground.png */; };
+		59AB5B34168D74CF0039106A /* tableViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59AB5B33168D74CF0039106A /* tableViewBackground@2x.png */; };
+		59AB5B38168D81BA0039106A /* DateChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59AB5B36168D81BA0039106A /* DateChangeViewController.m */; };
+		59AB5B39168D81BA0039106A /* DateChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59AB5B37168D81BA0039106A /* DateChangeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +47,14 @@
 		598B822F168AACF600C44E51 /* BNRItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		598B8231168AAD9C00C44E51 /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		598B8232168AAD9C00C44E51 /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
-		598B8238168AE27C00C44E51 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		59AB5B2B168D673C0039106A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		59AB5B2C168D673C0039106A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		59AB5B2D168D673C0039106A /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		59AB5B31168D74C30039106A /* tableViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableViewBackground.png; sourceTree = "<group>"; };
+		59AB5B33168D74CF0039106A /* tableViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableViewBackground@2x.png"; sourceTree = "<group>"; };
+		59AB5B35168D81BA0039106A /* DateChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateChangeViewController.h; sourceTree = "<group>"; };
+		59AB5B36168D81BA0039106A /* DateChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateChangeViewController.m; sourceTree = "<group>"; };
+		59AB5B37168D81BA0039106A /* DateChangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateChangeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,12 +103,19 @@
 			children = (
 				598B821D168AAB2900C44E51 /* HomepwnerAppDelegate.h */,
 				598B821E168AAB2900C44E51 /* HomepwnerAppDelegate.m */,
+				59AB5B2B168D673C0039106A /* DetailViewController.h */,
+				59AB5B2C168D673C0039106A /* DetailViewController.m */,
+				59AB5B2D168D673C0039106A /* DetailViewController.xib */,
 				598B822E168AACF600C44E51 /* BNRItem.h */,
 				598B822F168AACF600C44E51 /* BNRItem.m */,
 				598B8231168AAD9C00C44E51 /* BNRItemStore.h */,
+				59AB5B33168D74CF0039106A /* tableViewBackground@2x.png */,
 				598B8232168AAD9C00C44E51 /* BNRItemStore.m */,
+				59AB5B35168D81BA0039106A /* DateChangeViewController.h */,
+				59AB5B36168D81BA0039106A /* DateChangeViewController.m */,
+				59AB5B37168D81BA0039106A /* DateChangeViewController.xib */,
 				598B822B168AAB8300C44E51 /* ItemsViewController.h */,
-				598B8238168AE27C00C44E51 /* HeaderView.xib */,
+				59AB5B31168D74C30039106A /* tableViewBackground.png */,
 				598B822C168AAB8300C44E51 /* ItemsViewController.m */,
 				598B8215168AAB2900C44E51 /* Supporting Files */,
 			);
@@ -173,7 +192,10 @@
 				598B8221168AAB2900C44E51 /* Default.png in Resources */,
 				598B8223168AAB2900C44E51 /* Default@2x.png in Resources */,
 				598B8225168AAB2900C44E51 /* Default-568h@2x.png in Resources */,
-				598B8239168AE27C00C44E51 /* HeaderView.xib in Resources */,
+				59AB5B2F168D673C0039106A /* DetailViewController.xib in Resources */,
+				59AB5B32168D74C30039106A /* tableViewBackground.png in Resources */,
+				59AB5B34168D74CF0039106A /* tableViewBackground@2x.png in Resources */,
+				59AB5B39168D81BA0039106A /* DateChangeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +211,8 @@
 				598B821F168AAB2900C44E51 /* HomepwnerAppDelegate.m in Sources */,
 				598B822D168AAB8300C44E51 /* ItemsViewController.m in Sources */,
 				598B8233168AAD9C00C44E51 /* BNRItemStore.m in Sources */,
+				59AB5B2E168D673C0039106A /* DetailViewController.m in Sources */,
+				59AB5B38168D81BA0039106A /* DateChangeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

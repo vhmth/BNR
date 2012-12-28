@@ -7,6 +7,7 @@
 //
 
 #import "ItemsViewController.h"
+#import "DetailViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
@@ -15,6 +16,14 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        [[self navigationItem] setTitle:@"Homepwner"];
+        
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                    target:self
+                                    action:@selector(addNewItem:)];
+        [[self navigationItem] setRightBarButtonItem:bbi];
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
 }
@@ -65,35 +74,6 @@
         return 60.0;
     } else {
         return 44.0;
-    }
-}
-
-- (UIView *)headerView {
-    if (!headerView) {
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-                                      owner:self
-                                    options:nil];
-    }
-    return headerView;
-}
-
-- (UIView *)tableView:(UITableView *)tableView
-        viewForHeaderInSection:(NSInteger)section {
-    return [self headerView];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView
-        heightForHeaderInSection:(NSInteger)section {
-    return [[self headerView] bounds].size.height;
-}
-
-- (IBAction)toggleEditingMode:(id)sender {
-    if ([self isEditing]) {
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        [self setEditing:NO animated:YES];
-    } else {
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        [self setEditing:YES animated:YES];
     }
 }
 
@@ -155,6 +135,26 @@
     } else {
         return proposedDestinationIndexPath;
     }
+}
+
+- (void)tableView:(UITableView *)tableView
+        didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath row] != ([[[BNRItemStore sharedStore] allItems] count] - 1)) {
+        BNRItem *item = [[[BNRItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
+        DetailViewController *detailViewCtl = [[DetailViewController alloc] init];
+        [detailViewCtl setItem:item];
+        [[self navigationController] pushViewController:detailViewCtl
+                                               animated:YES];
+    } else {
+        // if this is the "No more rows!" row, deselect it
+        [tableView deselectRowAtIndexPath:indexPath
+                                    animated:YES];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
 }
 
 @end

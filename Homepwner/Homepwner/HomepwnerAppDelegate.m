@@ -13,10 +13,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; 
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    ItemsViewController *itemsViewController = [[ItemsViewController alloc] init];
-    [[self window] setRootViewController:itemsViewController];
+    ItemsViewController *itemsViewCtl = [[ItemsViewController alloc] init];
+    UINavigationController *navCtl = [[UINavigationController alloc]
+                                      initWithRootViewController:itemsViewCtl];
+    [[self window] setRootViewController:navCtl];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
